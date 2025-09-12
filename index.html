@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Humads</title>
+    <link rel="icon" type="image/png" href="assets/img/logo.png">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <img src="assets/img/logo.png" alt="Humads" class="logo-img">
+                <span class="logo-text">Humads</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Inicio</a></li>
+                <li><a href="#about">Nosotros</a></li>
+                <li><a href="#services">Servicios</a></li>
+                <li><a href="#results">Resultados</a></li>
+                <li><a href="#pricing">Inversión</a></li>
+                <li><a href="#team">Equipo</a></li>
+                <li><a href="#footer">Contacto</a></li>
+            </ul>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <ul>
+                <li><a href="#home" onclick="closeMobileMenu()">Inicio</a></li>
+                <li><a href="#about" onclick="closeMobileMenu()">Nosotros</a></li>
+                <li><a href="#services" onclick="closeMobileMenu()">Servicios</a></li>
+                <li><a href="#results" onclick="closeMobileMenu()">Resultados</a></li>
+                <li><a href="#pricing" onclick="closeMobileMenu()">Inversión</a></li>
+                <li><a href="#team" onclick="closeMobileMenu()">Equipo</a></li>
+                <li><a href="#footer" onclick="closeMobileMenu()">Contacto</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1><span class="hero-main-text">Generamos</span><br><span class="dynamic-text" id="dynamicText">leads</span></h1>
+                <p>Diseñamos campañas pensadas para atraer leads calificados, que consulten y se conviertan en ventas. No solo aumentamos la visibilidad, sino que convertimos esa atención en acciones concretas.</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary" onclick="openModal('auditModal')">Agendar auditoría gratuita</button>
+                    <button class="btn-secondary" onclick="openModal('casesModal')">Ver casos de éxito</button>
+                </div>
+                <div class="hero-features">
+                    <div class="feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Leads calificados garantizados</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Acompañamiento cercano</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-card">
+                    <span class="card-text">De mensajes a clientes,<br>de clientes a crecimiento</span>
+                </div>
+                <div class="hero-professional">
+                    <img src="assets/img/hero/pngaaa.com-2003857.png" alt="mk - Experta en marketing digital" class="professional-avatar">
+                    <div class="professional-badge">Expertas en leads</div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>SCROLL</span>
+            <div class="scroll-arrow">↓</div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="companies">
+        <div class="companies-content">
+            <p>Más de <strong>140 empresas</strong> han confiado en nuestra metodología</p>
+            <div class="companies-logos">
+                <div class="logo-item">Salud Premium</div>
+                <div class="logo-item">Estética Avanzada</div>
+                <div class="logo-item">Construcción Elite</div>
+                <div class="logo-item">Legal Partners</div>
+                <div class="logo-item">Arquitectura Pro</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="about-content">
+            <div class="about-image">
+                <div class="about-photo-main">
+                    <img src="assets/img/about/equipo-trabajo.jpg" alt="Equipo de trabajo analizando datos" class="about-main-img">
+                    <div class="about-overlay">
+                        <div class="overlay-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <span>Análisis Profesional</span>
+                    </div>
+                </div>
+                <div class="conversion-card">
+                    <h3>Aumenta tu tasa<br>de conversión</h3>
+                    <div class="conversion-visual">
+                        <img src="assets/img/about/resultados-conversion.jpg" alt="Resultados de conversión" class="conversion-img">
+                        <div class="conversion-stats">
+                            <div class="stat-item-small">
+                                <span class="stat-label">Mensajes</span>
+                                <div class="stat-bar bar-1"></div>
+                            </div>
+                            <div class="stat-item-small">
+                                <span class="stat-label">Consultas</span>
+                                <div class="stat-bar bar-2"></div>
+                            </div>
+                            <div class="stat-item-small">
+                                <span class="stat-label">Ventas</span>
+                                <div class="stat-bar bar-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-text">
+                <span class="section-label">AGENCIA ESPECIALIZADA EN LEADS</span>
+                <h2>Soluciones de marketing<br>para empresas de servicios</h2>
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="service-content">
+                        <h4>Investigación profunda del negocio</h4>
+                        <p>Analizamos tu cliente ideal, competencia y barreras de conversión en todo tu ecosistema digital.</p>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <div class="service-content">
+                        <h4>Estrategias publicitarias personalizadas</h4>
+                        <p>Campañas enfocadas 100% en generar mensajes de calidad y agendar reuniones comerciales.</p>
+                    </div>
+                </div>
+                <div class="about-buttons">
+                    <button class="btn-primary" onclick="scrollToSection('methodology')">Conocer metodología</button>
+                    <button class="btn-link" onclick="scrollToSection('services')">Nuestros servicios →</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="portfolio">
+        <div class="portfolio-header">
+            <h2>Nuestros servicios especializados</h2>
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="research">Investigación</button>
+                <button class="filter-btn" data-filter="campaigns">Campañas</button>
+                <button class="filter-btn" data-filter="optimization">Optimización</button>
+            </div>
+        </div>
+        <div class="portfolio-grid">
+            <div class="portfolio-item" data-category="research">
+                <div class="portfolio-image">
+                    <img src="assets/img/servicios/analisis-cliente.jpg" alt="Análisis de cliente ideal">
+                    <div class="portfolio-overlay">
+                        <h4>Análisis de cliente ideal</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="campaigns">
+                <div class="portfolio-image">
+                    <img src="assets/img/servicios/campanas-mensajes.jpg" alt="Campañas de generación de mensajes">
+                    <div class="portfolio-overlay">
+                        <h4>Campañas de generación de mensajes</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="optimization">
+                <div class="portfolio-image">
+                    <img src="assets/img/servicios/whatsapp-business.jpg" alt="Optimización de WhatsApp Business">
+                    <div class="portfolio-overlay">
+                        <h4>Optimización de WhatsApp Business</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="research">
+                <div class="portfolio-image">
+                    <img src="assets/img/servicios/auditoria-digital.jpg" alt="Auditoría de ecosistema digital">
+                    <div class="portfolio-overlay">
+                        <h4>Auditoría de ecosistema digital</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="campaigns">
+                <div class="portfolio-image">
+                    <img src="assets/img/servicios/angulos-publicitarios.jpg" alt="Ángulos publicitarios estratégicos">
+                    <div class="portfolio-overlay">
+                        <h4>Ángulos publicitarios estratégicos</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="optimization">
+                <div class="portfolio-image">
+                    <img src="assets/img/servicios/reportes-mensuales.jpg" alt="Reportes mensuales detallados">
+                    <div class="portfolio-overlay">
+                        <h4>Reportes mensuales detallados</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Differentiators Section -->
+    <section class="business-strategy">
+        <div class="strategy-content">
+            <div class="strategy-text">
+                <span class="section-label">NUESTROS DIFERENCIADORES</span>
+                <h2>Por qué elegirnos frente<br>a la competencia</h2>
+                <div class="strategy-accordion">
+                    <div class="accordion-item active">
+                        <h4>Equipo de 9 mujeres expertas <span>−</span></h4>
+                        <p>Nuestra mirada nos permite leer mejor los contextos y diseñar estrategias que conectan desde lo real, con atención al detalle y ejecución con excelencia.</p>
+                    </div>
+                    <div class="accordion-item">
+                        <h4>Metodología validada por +140 clientes <span>+</span></h4>
+                    </div>
+                    <div class="accordion-item">
+                        <h4>Acompañamiento cercano y transparente <span>+</span></h4>
+                    </div>
+                </div>
+                <div class="strategy-buttons">
+                    <button class="btn-primary" onclick="scrollToSection('methodology')">Conocer metodología</button>
+                    <button class="btn-play" onclick="openModal('casesModal')">▶ Ver testimonios</button>
+                </div>
+            </div>
+            <div class="strategy-image">
+                <div class="strategy-photo-main">
+                    <img src="assets/img/strategy/equipo-estrategias.png" alt="Equipo trabajando en estrategias" class="strategy-main-img">
+                    <div class="strategy-overlay">
+                        <div class="overlay-badge">
+                            <i class="fas fa-users"></i>
+                            <span>9 Expertas</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="revenue-card">
+                    <h4>Genera leads<br>calificados</h4>
+                    <div class="revenue-amount">+140</div>
+                    <div class="revenue-visual">
+                        <img src="assets/img/strategy/resultados-exitosos.jpg" alt="Resultados exitosos" class="revenue-img">
+                        <div class="success-indicator">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>Crecimiento</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="results" class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>140+</h3>
+                <p>Clientes atendidos</p>
+            </div>
+            <div class="stat-item">
+                <h3>4.5/5</h3>
+                <p>Satisfacción promedio</p>
+            </div>
+            <div class="stat-item">
+                <h3>9</h3>
+                <p>Expertas en el equipo</p>
+            </div>
+            <div class="stat-item">
+                <h3>100%</h3>
+                <p>Enfoque en conversión</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methodology Section -->
+    <section id="methodology" class="methodology">
+        <div class="methodology-content">
+            <div class="methodology-header">
+                <span class="section-label">NUESTRA METODOLOGÍA</span>
+                <h2>El proceso que garantiza resultados</h2>
+                <p>Una metodología validada por más de 140 clientes que combina investigación profunda, estrategia personalizada y ejecución con excelencia.</p>
+            </div>
+            
+            <div class="methodology-steps">
+                <div class="methodology-step">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <div class="step-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h4>Investigación Profunda</h4>
+                        <p>Analizamos tu cliente ideal, competencia y barreras de conversión en todo tu ecosistema digital (WhatsApp Business, Instagram, web).</p>
+                        <ul class="step-features">
+                            <li>Perfil detallado del cliente ideal</li>
+                            <li>Análisis de competencia y mercado</li>
+                            <li>Auditoría del ecosistema digital</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="methodology-step">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <div class="step-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h4>Estrategia Personalizada</h4>
+                        <p>Diseñamos 5 ángulos publicitarios estratégicos adaptados a tu rubro, con guiones y contenido que conecta y vende.</p>
+                        <ul class="step-features">
+                            <li>5 ángulos publicitarios únicos</li>
+                            <li>Guiones persuasivos optimizados</li>
+                            <li>Guía de grabación de contenido</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="methodology-step">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <div class="step-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h4>Ejecución & Seguimiento</h4>
+                        <p>Implementamos campañas enfocadas en generar mensajes calificados con optimización diaria y acompañamiento cercano para sostener el crecimiento.</p>
+                        <ul class="step-features">
+                            <li>Ajustes tácticos diarios</li>
+                            <li>Optimización de presupuesto</li>
+                            <li>Reportes mensuales detallados</li>
+                            <li>Reuniones de seguimiento</li>
+                            <li>Estrategias de escalamiento</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="methodology-cta">
+                <h3>¿Quieres conocer nuestros planes de trabajo?</h3>
+                <button class="btn-primary" onclick="scrollToSection('pricing')">
+                    <i class="fas fa-arrow-right"></i> Ver Planes de Inversión
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="pricing-header">
+            <h2>Cómo trabajamos contigo</h2>
+            <p>3 pasos simples para transformar tu negocio</p>
+        </div>
+        
+        <div class="process-steps-enhanced">
+            <div class="step-enhanced">
+                <div class="step-icon-new">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+                <div class="step-info-enhanced">
+                    <h4>Auditoría Estratégica <span class="badge-free">GRATIS</span></h4>
+                    <p>Análisis completo de tu negocio en 48 horas con estrategia personalizada</p>
+                    <div class="step-benefits">
+                        <span><i class="fas fa-check-circle"></i> Diagnóstico digital completo</span>
+                        <span><i class="fas fa-check-circle"></i> Identificación de cliente ideal</span>
+                        <span><i class="fas fa-check-circle"></i> Plan de acción inmediato</span>
+                    </div>
+                    <button class="btn-enhanced primary" onclick="openModal('auditModal')">
+                        <i class="fas fa-calendar-check"></i> Agendar Ahora
+                    </button>
+                </div>
+            </div>
+            
+            <div class="timeline-connector">
+                <div class="timeline-line-new"></div>
+                <div class="timeline-arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </div>
+            
+            <div class="step-enhanced featured-enhanced">
+                <div class="step-icon-new">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <div class="step-info-enhanced">
+                    <h4>Ejecución Premium <span class="badge-premium">DESDE $1,200</span></h4>
+                    <p>Ejecutamos todo mientras tú te enfocas en atender nuevos clientes</p>
+                    <div class="step-benefits">
+                        <span><i class="fas fa-check-circle"></i> Campañas optimizadas</span>
+                        <span><i class="fas fa-check-circle"></i> Primeros leads en 2 semanas</span>
+                        <span><i class="fas fa-check-circle"></i> Soporte dedicado 24/7</span>
+                    </div>
+                    <button class="btn-enhanced primary" onclick="openModal('investmentModal')">
+                        <i class="fas fa-handshake"></i> Consultar Inversión
+                    </button>
+                    <div class="step-note">💎 Reserva con solo $50 USD</div>
+                </div>
+            </div>
+            
+            <div class="timeline-connector">
+                <div class="timeline-line-new"></div>
+                <div class="timeline-arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </div>
+            
+            <div class="step-enhanced">
+                <div class="step-icon-new">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="step-info-enhanced">
+                    <h4>Escalamiento <span class="badge-scale">TRIMESTRAL</span></h4>
+                    <p>Multiplicamos resultados con estrategias avanzadas y descuentos</p>
+                    <div class="step-benefits">
+                        <span><i class="fas fa-check-circle"></i> 15% descuento por fidelidad</span>
+                        <span><i class="fas fa-check-circle"></i> Atención prioritaria VIP</span>
+                        <span><i class="fas fa-check-circle"></i> Estrategias avanzadas</span>
+                    </div>
+                    <button class="btn-enhanced secondary" onclick="console.log('Button clicked'); openModal('trimestralModal')">
+                        <i class="fas fa-info-circle"></i> Ver Condiciones
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="team">
+        <div class="team-content">
+            <div class="team-header">
+                <span class="section-label">NUESTRO EQUIPO</span>
+                <h2>9 mujeres expertas<br>enfocadas en tu éxito</h2>
+                <p>Somos un equipo profesional dividido en áreas especializadas: marketing, operaciones, comercial, finanzas y RRHH. Nuestra mirada femenina nos permite leer mejor los contextos y diseñar estrategias que conectan desde lo real.</p>
+            </div>
+            <div class="team-carousel">
+                <div class="carousel-container">
+                    <div class="carousel-track">
+                        <div class="team-slide">
+                            <div class="team-member">
+                                <div class="member-photo-container">
+                                    <img src="assets/img/carrusel/1.jpg" alt="Valentina" class="member-photo">
+                                </div>
+                                <div class="member-info">
+                                    <h4>Valentina</h4>
+                                    <span>CEO & Estrategia</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-slide">
+                            <div class="team-member">
+                                <div class="member-photo-container">
+                                    <img src="assets/img/carrusel/2.jpg" alt="Luciana" class="member-photo">
+                                </div>
+                                <div class="member-info">
+                                    <h4>Luciana</h4>
+                                    <span>Co-fundadora</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-slide">
+                            <div class="team-member">
+                                <div class="member-photo-container">
+                                    <img src="assets/img/carrusel/3.png" alt="Especialista en Marketing" class="member-photo">
+                                </div>
+                                <div class="member-info">
+                                    <h4>Marketing</h4>
+                                    <span>Especialista</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-slide">
+                            <div class="team-member">
+                                <div class="member-photo-container">
+                                    <img src="assets/img/carrusel/4.jpg" alt="Traffic Manager" class="member-photo">
+                                </div>
+                                <div class="member-info">
+                                    <h4>Traffic</h4>
+                                    <span>Manager</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-slide">
+                            <div class="team-member">
+                                <div class="member-photo-container">
+                                    <img src="assets/img/carrusel/5.jpg" alt="Coordinadora de Operaciones" class="member-photo">
+                                </div>
+                                <div class="member-info">
+                                    <h4>Operaciones</h4>
+                                    <span>Coordinadora</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-slide">
+                            <div class="team-member">
+                                <div class="member-photo-container">
+                                    <img src="assets/img/carrusel/6.jpg" alt="Ejecutiva Comercial" class="member-photo">
+                                </div>
+                                <div class="member-info">
+                                    <h4>Comercial</h4>
+                                    <span>Ejecutiva</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-slide">
+                            <div class="team-member">
+                                <div class="member-photo-container">
+                                    <img src="assets/img/carrusel/7.jpg" alt="Analista de Finanzas" class="member-photo">
+                                </div>
+                                <div class="member-info">
+                                    <h4>Finanzas</h4>
+                                    <span>Analista</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-slide">
+                            <div class="team-member">
+                                <div class="member-photo-container">
+                                    <img src="assets/img/carrusel/8.jpg" alt="Gestora de RRHH" class="member-photo">
+                                </div>
+                                <div class="member-info">
+                                    <h4>RRHH</h4>
+                                    <span>Gestora</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-slide">
+                            <div class="team-member">
+                                <div class="member-photo-container">
+                                    <img src="assets/img/carrusel/9.jpg" alt="Diseñadora Creativa" class="member-photo">
+                                </div>
+                                <div class="member-info">
+                                    <h4>Creatividad</h4>
+                                    <span>Diseñadora</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-nav">
+                    <button class="nav-btn prev-btn" id="prevBtn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="carousel-dots"></div>
+                    <button class="nav-btn next-btn" id="nextBtn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Plan Trimestral -->
+    <div id="trimestralModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-calendar-alt"></i> Plan Trimestral - Condiciones</h3>
+                <button class="modal-close" onclick="closeModal('trimestralModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="conditions-content">
+                    <div class="condition-section">
+                        <h4><i class="fas fa-handshake"></i> Compromiso y Flexibilidad</h4>
+                        <ul class="conditions-list">
+                            <li><strong>Duración:</strong> Compromiso mínimo de 3 meses</li>
+                            <li><strong>Inicio:</strong> Puedes iniciar el servicio cualquier día del mes</li>
+                            <li><strong>Seña:</strong> Reserva tu plaza con solo $50 USD</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="condition-section">
+                        <h4><i class="fas fa-percentage"></i> Descuentos y Beneficios</h4>
+                        <ul class="conditions-list">
+                            <li><strong>15% descuento:</strong> Por pago único trimestral</li>
+                            <li><strong>Atención VIP:</strong> Respuesta prioritaria y contacto directo</li>
+                            <li><strong>Estrategias avanzadas:</strong> Campañas de remarketing y segmentación</li>
+                            <li><strong>Sin setup:</strong> Sin costos de configuración inicial</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="condition-section">
+                        <h4><i class="fas fa-credit-card"></i> Modalidades de Pago</h4>
+                        <ul class="conditions-list">
+                            <li><strong>Moneda:</strong> USD o pesos argentinos al cambio oficial</li>
+                            <li><strong>Pago trimestral:</strong> Único pago al inicio del período</li>
+                            <li><strong>Vencimiento:</strong> Entre el 5 y 10 de cada trimestre</li>
+                            <li><strong>Flexibilidad:</strong> Nos adaptamos a tu situación particular</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="condition-section">
+                        <h4><i class="fas fa-shield-alt"></i> Garantías del Servicio</h4>
+                        <ul class="conditions-list">
+                            <li><strong>Seguimiento constante:</strong> Reuniones mensuales obligatorias</li>
+                            <li><strong>Ajustes inmediatos:</strong> Si algo no funciona, se corrige</li>
+                            <li><strong>Transparencia total:</strong> Reportes detallados mensuales</li>
+                            <li><strong>Equipo dedicado:</strong> 9 especialistas a tu disposición</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="condition-highlight">
+                        <div class="highlight-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="highlight-content">
+                            <h5>¿Por qué elegir el plan trimestral?</h5>
+                            <p>Nuestros clientes que eligen el plan trimestral ven mejores resultados porque las estrategias de marketing necesitan tiempo para optimizarse y escalar. El compromiso a 3 meses nos permite ajustar, mejorar y multiplicar resultados.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-cta">
+                    <h4>¿Listo para multiplicar tus resultados?</h4>
+                    <div class="cta-buttons">
+                        <button class="btn-primary" onclick="openModal('auditModal'); closeModal('trimestralModal')">
+                            <i class="fas fa-calendar-check"></i> Agendar Auditoría Gratuita
+                        </button>
+                        <button class="btn-secondary" onclick="closeModal('trimestralModal')">
+                            <i class="fas fa-phone"></i> Consultar por WhatsApp
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer" class="footer">
+        <div class="footer-decoration">
+            <div class="footer-wave"></div>
+            <div class="footer-circle footer-circle-1"></div>
+            <div class="footer-circle footer-circle-2"></div>
+            <div class="footer-circle footer-circle-3"></div>
+        </div>
+        <div class="footer-content">
+            <div class="footer-main">
+                <div class="footer-brand-section">
+                    <div class="footer-brand">
+                        <img src="assets/img/logo.png" alt="Humads" class="footer-logo">
+                        <span class="footer-logo-text">Humads</span>
+                    </div>
+                    <p class="footer-description">
+                        Agencia especializada en generación de leads calificados para empresas de servicios.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" aria-label="Email"><i class="far fa-envelope"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Navegación</h4>
+                        <ul>
+                            <li><a href="#home">Inicio</a></li>
+                            <li><a href="#about">Nosotros</a></li>
+                            <li><a href="#services">Servicios</a></li>
+                            <li><a href="#team">Equipo</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Más Información</h4>
+                        <ul>
+                            <li><a href="#results">Resultados</a></li>
+                            <li><a href="#pricing">Proceso</a></li>
+                            <li><a href="#privacy">Política de Privacidad</a></li>
+                            <li><a href="#terms">Términos y Condiciones</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column footer-contact">
+                        <h4>Contacto</h4>
+                        <div class="contact-horizontal">
+                            <a href="mailto:info@humads.com" class="contact-item">
+                                <i class="far fa-envelope"></i>
+                                <span>info@humads.com</span>
+                            </a>
+                            <a href="https://wa.me/1234567890" class="contact-item">
+                                <i class="fab fa-whatsapp"></i>
+                                <span>WhatsApp</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Humads. Todos los derechos reservados.</p>
+                <div class="footer-legal">
+                    <a href="#">Política de Privacidad</a>
+                    <span>•</span>
+                    <a href="#">Términos y Condiciones</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modales -->
+    <!-- Modal Agendar Auditoría -->
+    <div class="modal-overlay" id="auditModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-calendar-check"></i> Agendar Auditoría Gratuita</h3>
+                <button class="modal-close" onclick="closeModal('auditModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-subtitle">Descubre exactamente cómo generar más leads calificados para tu negocio</p>
+                
+                <form class="modal-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Nombre completo *</label>
+                            <input type="text" required placeholder="Tu nombre">
+                        </div>
+                        <div class="form-group">
+                            <label>Email *</label>
+                            <input type="email" required placeholder="tu@email.com">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Empresa</label>
+                            <input type="text" placeholder="Nombre de tu empresa">
+                        </div>
+                        <div class="form-group">
+                            <label>Teléfono</label>
+                            <input type="tel" placeholder="+1 234 567 890">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>¿Cuál es tu principal desafío?</label>
+                        <select required>
+                            <option value="">Selecciona una opción</option>
+                            <option value="pocos-leads">Genero pocos leads</option>
+                            <option value="leads-baja-calidad">Leads de baja calidad</option>
+                            <option value="no-se-convertir">No sé cómo convertir leads en clientes</option>
+                            <option value="falta-tiempo">Me falta tiempo para marketing</option>
+                            <option value="no-funciona-publicidad">Mi publicidad no funciona</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Cuéntanos más sobre tu negocio</label>
+                        <textarea placeholder="Describe brevemente tu negocio y objetivos..."></textarea>
+                    </div>
+                    
+                    <div class="modal-benefits">
+                        <h4>Lo que obtienes en la auditoría:</h4>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Análisis completo de tu presencia digital</li>
+                            <li><i class="fas fa-check"></i> Identificación de tu cliente ideal</li>
+                            <li><i class="fas fa-check"></i> Estrategia personalizada para generar leads</li>
+                            <li><i class="fas fa-check"></i> Plan de acción inmediato</li>
+                        </ul>
+                    </div>
+                    
+                    <button type="submit" class="btn-submit">
+                        <i class="fas fa-calendar-plus"></i>
+                        Agendar Mi Auditoría Gratuita
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Casos de Éxito -->
+    <div class="modal-overlay" id="casesModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-trophy"></i> Casos de Éxito</h3>
+                <button class="modal-close" onclick="closeModal('casesModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="cases-grid">
+                    <div class="case-item">
+                        <div class="case-header">
+                            <div class="case-industry-badge">Salud</div>
+                            <h4>Clínica Dental Premium</h4>
+                        </div>
+                        <div class="case-content">
+                            <div class="case-results">
+                                <div class="result-item">
+                                    <span class="result-number">+300%</span>
+                                    <span class="result-label">Leads calificados</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-number">150</span>
+                                    <span class="result-label">Nuevos pacientes</span>
+                                </div>
+                            </div>
+                            <div class="case-testimonial">
+                                <i class="fas fa-quote-left"></i>
+                                <p>"En 3 meses triplicamos nuestros leads y llenamos la agenda. El ROI fue increíble."</p>
+                                <div class="testimonial-author">— Dr. García, Director Clínica</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="case-item">
+                        <div class="case-header">
+                            <div class="case-industry-badge">Construcción</div>
+                            <h4>Constructora Elite</h4>
+                        </div>
+                        <div class="case-content">
+                            <div class="case-results">
+                                <div class="result-item">
+                                    <span class="result-number">+500%</span>
+                                    <span class="result-label">ROI en publicidad</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-number">50</span>
+                                    <span class="result-label">Proyectos vendidos</span>
+                                </div>
+                            </div>
+                            <div class="case-testimonial">
+                                <i class="fas fa-quote-left"></i>
+                                <p>"Pasamos de 2 consultas mensuales a 25. Cerramos más proyectos que nunca."</p>
+                                <div class="testimonial-author">— Ing. Martínez, CEO</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="case-item">
+                        <div class="case-header">
+                            <div class="case-industry-badge">Legal</div>
+                            <h4>Bufete Legal Partners</h4>
+                        </div>
+                        <div class="case-content">
+                            <div class="case-results">
+                                <div class="result-item">
+                                    <span class="result-number">+400%</span>
+                                    <span class="result-label">Consultas mensuales</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-number">85%</span>
+                                    <span class="result-label">Tasa de conversión</span>
+                                </div>
+                            </div>
+                            <div class="case-testimonial">
+                                <i class="fas fa-quote-left"></i>
+                                <p>"La calidad de los leads mejoró drásticamente. Ahora solo atendemos casos rentables."</p>
+                                <div class="testimonial-author">— Abg. Rodríguez, Socio</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-cta">
+                    <h4>¿Quieres resultados similares?</h4>
+                    <button class="btn-secondary" onclick="openModal('auditModal'); closeModal('casesModal')">
+                        <i class="fas fa-rocket"></i>
+                        Solicitar Mi Auditoría Gratuita
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Consultar Inversión -->
+    <div class="modal-overlay" id="investmentModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-handshake"></i> Consultar Inversión</h3>
+                <button class="modal-close" onclick="closeModal('investmentModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-subtitle">Recibe una propuesta personalizada para tu negocio</p>
+                
+                <form class="modal-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Nombre completo *</label>
+                            <input type="text" required placeholder="Tu nombre">
+                        </div>
+                        <div class="form-group">
+                            <label>Email *</label>
+                            <input type="email" required placeholder="tu@email.com">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Empresa y sector *</label>
+                        <input type="text" required placeholder="Ej: Clínica dental, Bufete legal, etc.">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Presupuesto mensual estimado para marketing</label>
+                        <select required>
+                            <option value="">Selecciona un rango</option>
+                            <option value="500-1000">$500 - $1,000 USD</option>
+                            <option value="1000-2500">$1,000 - $2,500 USD</option>
+                            <option value="2500-5000">$2,500 - $5,000 USD</option>
+                            <option value="5000+">$5,000+ USD</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>¿Qué servicios te interesan más?</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-item">
+                                <input type="checkbox" value="audit"> Auditoría digital
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" value="campaigns"> Campañas publicitarias
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" value="whatsapp"> Optimización WhatsApp
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" value="content"> Estrategia de contenido
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Mensaje adicional</label>
+                        <textarea placeholder="Cuéntanos más sobre tus objetivos y expectativas..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn-submit">
+                        <i class="fas fa-paper-plane"></i>
+                        Recibir Propuesta Personalizada
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
