@@ -1,11 +1,19 @@
 {
   "hero": {
     "title": "Generamos",
-    "dynamicWords": ["leads", "clientes", "conversiones", "resultados"],
+    "dynamicWords": [
+      "leads",
+      "clientes",
+      "conversiones",
+      "resultados"
+    ],
     "description": "Diseñamos campañas pensadas para atraer leads calificados, que consulten y se conviertan en ventas. No solo aumentamos la visibilidad, sino que convertimos esa atención en acciones concretas.",
     "primaryButton": "Agendar auditoría gratuita",
     "secondaryButton": "Ver casos de éxito",
-    "features": ["Leads calificados garantizados", "Acompañamiento cercano"]
+    "features": [
+      "Leads calificados garantizados",
+      "Acompañamiento cercano"
+    ]
   },
   "about": {
     "label": "AGENCIA ESPECIALIZADA EN LEADS",
@@ -13,35 +21,54 @@
     "services": [
       {
         "title": "Investigación profunda del negocio",
-        "description": "Analizamos tu cliente ideal, competencia y barreras de conversión en todo tu ecosistema digital.",
-        "icon": "fa-search"
+        "description": "Analizamos tu cliente ideal, competencia y barreras de conversión en todo tu ecosistema digital."
       },
       {
-        "title": "Estrategias publicitarias personalizadas", 
-        "description": "Campañas enfocadas 100% en generar mensajes de calidad y agendar reuniones comerciales.",
-        "icon": "fa-bullseye"
+        "title": "Estrategias publicitarias personalizadas",
+        "description": "Campañas enfocadas 100% en generar mensajes de calidad y agendar reuniones comerciales."
       }
     ]
   },
   "stats": [
-    { "value": "140+", "label": "Clientes atendidos" },
-    { "value": "4.5/5", "label": "Satisfacción promedio" },
-    { "value": "9", "label": "Expertas en el equipo" },
-    { "value": "100%", "label": "Enfoque en conversión" }
+    {
+      "value": "140+",
+      "label": "Clientes atendidos"
+    },
+    {
+      "value": "4.5/5",
+      "label": "Satisfacción promedio"
+    },
+    {
+      "value": "9",
+      "label": "Expertas en el equipo"
+    },
+    {
+      "value": "100%",
+      "label": "Enfoque en conversión"
+    }
   ],
   "team": {
-    "title": "9 mujeres expertas enfocadas en tu éxito",
-    "description": "Somos un equipo profesional dividido en áreas especializadas: marketing, operaciones, comercial, finanzas y RRHH.",
+    "title": "Nuestro equipo de expertas",
+    "description": "Conoce a las profesionales que trabajarán en hacer crecer tu negocio",
     "members": [
-      { "name": "Valentina", "role": "CEO & Estrategia", "image": "assets/img/carrusel/1.jpg" },
-      { "name": "Luciana", "role": "Co-fundadora", "image": "assets/img/carrusel/2.jpg" },
-      { "name": "Marketing", "role": "Especialista", "image": "assets/img/carrusel/3.png" },
-      { "name": "Traffic", "role": "Manager", "image": "assets/img/carrusel/4.jpg" },
-      { "name": "Operaciones", "role": "Coordinadora", "image": "assets/img/carrusel/5.jpg" },
-      { "name": "Comercial", "role": "Ejecutiva", "image": "assets/img/carrusel/6.jpg" },
-      { "name": "Finanzas", "role": "Analista", "image": "assets/img/carrusel/7.jpg" },
-      { "name": "RRHH", "role": "Gestora", "image": "assets/img/carrusel/8.jpg" },
-      { "name": "Creatividad", "role": "Diseñadora", "image": "assets/img/carrusel/9.jpg" }
+      {
+        "name": "Valentina",
+        "role": "CEO & Estrategia",
+        "description": "Lidera la visión estratégica y el crecimiento de la empresa",
+        "image": "assets/img/carrusel/1.jpg"
+      },
+      {
+        "name": "",
+        "role": "ej",
+        "description": "",
+        "image": ""
+      },
+      {
+        "name": "ej2",
+        "role": "",
+        "description": "",
+        "image": ""
+      }
     ]
   },
   "contact": {
@@ -49,24 +76,5 @@
     "whatsapp": "1234567890",
     "linkedin": "https://linkedin.com/company/humads",
     "instagram": "https://instagram.com/humads"
-  },
-  "images": {
-    "hero": "assets/img/hero/pngaaa.com-2003857.png",
-    "about": {
-      "main": "assets/img/about/equipo-trabajo.jpg",
-      "conversion": "assets/img/about/resultados-conversion.jpg"
-    },
-    "strategy": {
-      "main": "assets/img/strategy/equipo-estrategias.png", 
-      "revenue": "assets/img/strategy/resultados-exitosos.jpg"
-    },
-    "services": [
-      "assets/img/servicios/analisis-cliente.jpg",
-      "assets/img/servicios/campanas-mensajes.jpg",
-      "assets/img/servicios/whatsapp-business.jpg",
-      "assets/img/servicios/auditoria-digital.jpg", 
-      "assets/img/servicios/angulos-publicitarios.jpg",
-      "assets/img/servicios/reportes-mensuales.jpg"
-    ]
   }
 }

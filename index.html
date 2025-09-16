@@ -449,123 +449,30 @@
     </section>
 
     <!-- Team Section -->
-    <section id="team" class="team">
+    <section class="team" id="equipo">
         <div class="team-content">
             <div class="team-header">
-                <span class="section-label">NUESTRO EQUIPO</span>
-                <h2>9 mujeres expertas<br>enfocadas en tu éxito</h2>
-                <p>Somos un equipo profesional dividido en áreas especializadas: marketing, operaciones, comercial, finanzas y RRHH. Nuestra mirada femenina nos permite leer mejor los contextos y diseñar estrategias que conectan desde lo real.</p>
+                <h2 id="teamTitle">Nuestro equipo de expertas</h2>
+                <p id="teamDescription">Conoce a las profesionales que trabajarán en hacer crecer tu negocio</p>
             </div>
+
             <div class="team-carousel">
                 <div class="carousel-container">
-                    <div class="carousel-track">
-                        <div class="team-slide">
-                            <div class="team-member">
-                                <div class="member-photo-container">
-                                    <img src="assets/img/carrusel/1.jpg" alt="Valentina" class="member-photo">
-                                </div>
-                                <div class="member-info">
-                                    <h4>Valentina</h4>
-                                    <span>CEO & Estrategia</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="team-slide">
-                            <div class="team-member">
-                                <div class="member-photo-container">
-                                    <img src="assets/img/carrusel/2.jpg" alt="Luciana" class="member-photo">
-                                </div>
-                                <div class="member-info">
-                                    <h4>Luciana</h4>
-                                    <span>Co-fundadora</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="team-slide">
-                            <div class="team-member">
-                                <div class="member-photo-container">
-                                    <img src="assets/img/carrusel/3.png" alt="Especialista en Marketing" class="member-photo">
-                                </div>
-                                <div class="member-info">
-                                    <h4>Marketing</h4>
-                                    <span>Especialista</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="team-slide">
-                            <div class="team-member">
-                                <div class="member-photo-container">
-                                    <img src="assets/img/carrusel/4.jpg" alt="Traffic Manager" class="member-photo">
-                                </div>
-                                <div class="member-info">
-                                    <h4>Traffic</h4>
-                                    <span>Manager</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="team-slide">
-                            <div class="team-member">
-                                <div class="member-photo-container">
-                                    <img src="assets/img/carrusel/5.jpg" alt="Coordinadora de Operaciones" class="member-photo">
-                                </div>
-                                <div class="member-info">
-                                    <h4>Operaciones</h4>
-                                    <span>Coordinadora</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="team-slide">
-                            <div class="team-member">
-                                <div class="member-photo-container">
-                                    <img src="assets/img/carrusel/6.jpg" alt="Ejecutiva Comercial" class="member-photo">
-                                </div>
-                                <div class="member-info">
-                                    <h4>Comercial</h4>
-                                    <span>Ejecutiva</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="team-slide">
-                            <div class="team-member">
-                                <div class="member-photo-container">
-                                    <img src="assets/img/carrusel/7.jpg" alt="Analista de Finanzas" class="member-photo">
-                                </div>
-                                <div class="member-info">
-                                    <h4>Finanzas</h4>
-                                    <span>Analista</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="team-slide">
-                            <div class="team-member">
-                                <div class="member-photo-container">
-                                    <img src="assets/img/carrusel/8.jpg" alt="Gestora de RRHH" class="member-photo">
-                                </div>
-                                <div class="member-info">
-                                    <h4>RRHH</h4>
-                                    <span>Gestora</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="team-slide">
-                            <div class="team-member">
-                                <div class="member-photo-container">
-                                    <img src="assets/img/carrusel/9.jpg" alt="Diseñadora Creativa" class="member-photo">
-                                </div>
-                                <div class="member-info">
-                                    <h4>Creatividad</h4>
-                                    <span>Diseñadora</span>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="carousel-track" id="teamCarouselTrack">
+                        <!-- Team members will be generated dynamically -->
                     </div>
                 </div>
+
                 <div class="carousel-nav">
-                    <button class="nav-btn prev-btn" id="prevBtn">
+                    <button class="nav-btn" id="prevBtn" onclick="previousSlide()">
                         <i class="fas fa-chevron-left"></i>
                     </button>
-                    <div class="carousel-dots"></div>
-                    <button class="nav-btn next-btn" id="nextBtn">
+
+                    <div class="carousel-dots" id="carouselDots">
+                        <!-- Dots will be generated dynamically -->
+                    </div>
+
+                    <button class="nav-btn" id="nextBtn" onclick="nextSlide()">
                         <i class="fas fa-chevron-right"></i>
                     </button>
                 </div>
@@ -962,6 +869,6 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=1"></script>
 </body>
 </html>

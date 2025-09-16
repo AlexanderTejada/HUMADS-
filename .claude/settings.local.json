@@ -19,7 +19,16 @@
       "Bash(done)",
       "Bash(if [ -f \"assets/img/chicas/3.png\" ])",
       "Bash(then cp \"assets/img/chicas/3.png\" \"assets/img/carrusel/3.png\")",
-      "Bash(else echo \"Imagen 3.png no encontrada\")"
+      "Bash(else echo \"Imagen 3.png no encontrada\")",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git branch:*)",
+      "Bash(git remote add:*)",
+      "Bash(git push:*)",
+      "Bash(git rm:*)",
+      "Bash(tree:*)",
+      "Bash(curl:*)",
+      "Bash(node:*)"
     ],
     "deny": [],
     "ask": []

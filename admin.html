@@ -781,6 +781,40 @@
             box-shadow: 0 20px 40px rgba(106, 0, 244, 0.15);
         }
 
+        /* Team members grid container */
+        #team-members {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* Responsive: single column on smaller screens */
+        @media (max-width: 768px) {
+            #team-members {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Team member cards in admin */
+        .team-member-card {
+            background: rgba(106, 0, 244, 0.02);
+            border: 1px solid rgba(106, 0, 244, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 0; /* Remove bottom margin since grid handles spacing */
+            transition: all 0.3s ease;
+        }
+
+        .team-member-card:hover {
+            border-color: rgba(106, 0, 244, 0.3);
+            box-shadow: 0 10px 25px rgba(106, 0, 244, 0.1);
+        }
+
+        .team-member-card .form-control {
+            margin-bottom: 15px;
+        }
+
         .preview-team-avatar {
             width: 120px;
             height: 120px;
@@ -1138,14 +1172,34 @@
             <div class="tab-content" id="team-tab">
                 <div class="form-section">
                     <div class="form-section-header">
-                        <h3><i class="fas fa-users"></i> Miembros del Equipo</h3>
+                        <h3><i class="fas fa-users"></i> Equipo</h3>
                     </div>
                     <div class="form-section-content">
                         <div class="form-help-text" style="margin-bottom: 30px; border-left-color: #28a745;">
-                            <strong>Tu equipo de trabajo:</strong> Presenta a las personas que trabajan contigo. Incluye una foto profesional, nombre y cargo de cada miembro.
+                            <strong>Gestión del equipo:</strong> Agrega, edita o elimina miembros del equipo. Cada miembro puede tener nombre, cargo, imagen y descripción.
                         </div>
-                    <div class="team-grid" id="team-members">
-                    </div>
+
+                        <div class="form-group">
+                            <label>Título de la Sección</label>
+                            <input type="text" class="form-control" id="team-title" placeholder="Ej: Nuestro equipo de expertas">
+                            <div class="form-help-text">Título principal de la sección de equipo</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Descripción del Equipo</label>
+                            <textarea class="form-control" id="team-description" placeholder="Describe brevemente el equipo..."></textarea>
+                            <div class="form-help-text">Descripción que aparece debajo del título</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Miembros del Equipo</label>
+                            <div id="team-members">
+                                <!-- Los miembros se generarán dinámicamente -->
+                            </div>
+                            <button class="btn-add" onclick="addTeamMember()">
+                                <i class="fas fa-plus"></i> Agregar Miembro
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1267,12 +1321,86 @@
                 addStat(stat);
             });
 
+            // (Team section removed - now using carousel)
+
+            // Carrusel - cargar imágenes configuradas o usar por defecto
+            const defaultImages = [
+                'assets/img/carrusel/1.jpg',
+                'assets/img/carrusel/2.jpg',
+                'assets/img/carrusel/3.png',
+                'assets/img/carrusel/4.jpg',
+                'assets/img/carrusel/5.jpg',
+                'assets/img/carrusel/6.jpg',
+                'assets/img/carrusel/7.jpg',
+                'assets/img/carrusel/8.jpg',
+                'assets/img/carrusel/9.jpg'
+            ];
+
+            // Migrar datos de team.members a carousel.images si existe
+            let carouselImagesData = [];
+            if (contentData.carousel?.images) {
+                carouselImagesData = contentData.carousel.images;
+            } else if (contentData.team?.members) {
+                // Migrar desde la estructura antigua
+                carouselImagesData = contentData.team.members.map(member => member.image || '');
+                console.log('Migrating from team.members to carousel.images');
+            }
+
+            for (let i = 0; i < 9; i++) {
+                const imgElement = document.getElementById(`carousel-${i + 1}`);
+                if (imgElement) {
+                    // Usar imagen configurada, migrada, o por defecto
+                    const imageUrl = carouselImagesData[i] || defaultImages[i];
+                    imgElement.value = imageUrl;
+
+                    // Actualizar la vista previa de la imagen
+                    const uploadElement = imgElement.closest('.image-upload');
+                    if (uploadElement && imageUrl) {
+                        uploadElement.innerHTML = `<img src="${imageUrl}" alt=""><input type="hidden" class="carousel-image" id="carousel-${i + 1}" value="${imageUrl}">`;
+                    }
+                }
+            }
+
             // Team
+            document.getElementById('team-title').value = contentData.team?.title || '';
+            document.getElementById('team-description').value = contentData.team?.description || '';
+
+            // Team Members
             const teamContainer = document.getElementById('team-members');
             teamContainer.innerHTML = '';
-            contentData.team?.members?.forEach(member => {
-                addTeamMember(member);
-            });
+            if (contentData.team?.members && contentData.team.members.length > 0) {
+                console.log('📋 Cargando', contentData.team.members.length, 'miembros del equipo');
+                contentData.team.members.forEach((member, index) => {
+                    console.log(`  ${index + 1}. ${member.name}: imagen="${member.image || 'SIN IMAGEN'}"`);
+                    addTeamMember(member);
+                });
+            } else {
+                // Add default team members if none exist
+                console.log('📋 Agregando miembros por defecto');
+                const defaultMembers = [
+                    {
+                        name: 'Valentina',
+                        role: 'CEO & Estrategia',
+                        description: 'Lidera la visión estratégica y el crecimiento de la empresa',
+                        image: 'assets/img/carrusel/1.jpg'
+                    },
+                    {
+                        name: 'Luciana',
+                        role: 'Co-fundadora',
+                        description: 'Especialista en desarrollo de negocios y relaciones comerciales',
+                        image: 'assets/img/carrusel/2.jpg'
+                    },
+                    {
+                        name: 'Sofia',
+                        role: 'Marketing Specialist',
+                        description: 'Experta en campañas publicitarias y estrategias de contenido',
+                        image: 'assets/img/carrusel/3.png'
+                    }
+                ];
+                defaultMembers.forEach(member => {
+                    addTeamMember(member);
+                });
+            }
 
             // Contact
             document.getElementById('contact-email').value = contentData.contact?.email || '';
@@ -1347,36 +1475,58 @@
         }
 
         function addTeamMember(member = {}) {
+            console.log(`🆕 Agregando miembro: ${member.name}, imagen: "${member.image || 'SIN IMAGEN'}"`);
             const container = document.getElementById('team-members');
             const div = document.createElement('div');
             div.className = 'team-member-card';
             div.innerHTML = `
-                <div class="image-upload" onclick="selectImage(this)">
-                    ${member.image ? `<img src="${member.image}" alt="">` : `
-                        <div class="image-upload-placeholder">
-                            <i class="fas fa-camera" style="font-size: 30px;"></i>
-                            <p>Click para subir foto</p>
-                        </div>
-                    `}
-                    <input type="hidden" class="member-image" value="${member.image || ''}">
+                <div class="form-group">
+                    <label>Nombre</label>
+                    <input type="text" class="form-control team-name" value="${member.name || ''}" placeholder="Nombre del miembro">
                 </div>
-                <input type="text" class="form-control member-name" value="${member.name || ''}" placeholder="Ej: Ana García">
-                <input type="text" class="form-control member-role" value="${member.role || ''}" placeholder="Ej: Especialista en Marketing">
+                <div class="form-group">
+                    <label>Cargo</label>
+                    <input type="text" class="form-control team-role" value="${member.role || ''}" placeholder="Cargo o especialidad">
+                </div>
+                <div class="form-group">
+                    <label>Descripción</label>
+                    <textarea class="form-control team-description" placeholder="Descripción del miembro (opcional)">${member.description || ''}</textarea>
+                </div>
+                <div class="form-group">
+                    <label>Imagen</label>
+                    <div class="image-upload" onclick="selectImage(this)">
+                        ${member.image ?
+                            `<img src="${member.image}" alt="${member.name || 'Miembro'}">` :
+                            `<div class="image-upload-placeholder">
+                                <i class="fas fa-camera" style="font-size: 30px;"></i>
+                                <p>Click para subir imagen</p>
+                            </div>`
+                        }
+                        <input type="hidden" class="team-image" value="${member.image || ''}">
+                    </div>
+                </div>
                 <button class="btn-remove" onclick="this.parentElement.remove(); updatePreview();" style="width: 100%; margin-top: 10px;">
-                    <i class="fas fa-trash"></i> Eliminar
+                    <i class="fas fa-trash"></i> Eliminar Miembro
                 </button>
             `;
             container.appendChild(div);
-            
+
+            // Verify the hidden input was set correctly
+            const hiddenInput = div.querySelector('.team-image');
+            console.log(`✅ Input oculto para ${member.name}: "${hiddenInput.value}"`);
+
             // Agregar listeners a los nuevos inputs
-            const newInputs = div.querySelectorAll('input.member-name, input.member-role');
+            const newInputs = div.querySelectorAll('input, textarea');
             newInputs.forEach(input => {
                 input.addEventListener('input', debounce(updatePreview, 300));
             });
         }
 
+
         // Guardar cambios
         async function saveChanges() {
+            console.log('💾 INICIANDO saveChanges()');
+
             // Recopilar datos del formulario
             const heroFeatures = Array.from(document.querySelectorAll('#hero-features input')).map(input => input.value).filter(v => v);
             
@@ -1390,10 +1540,12 @@
                 label: item.querySelectorAll('input')[1].value
             }));
 
-            const teamMembers = Array.from(document.querySelectorAll('.team-member-card')).map(card => ({
-                name: card.querySelector('.member-name').value,
-                role: card.querySelector('.member-role').value,
-                image: card.querySelector('.member-image').value
+            // Recopilar datos del equipo
+            const teamMembers = Array.from(document.querySelectorAll('#team-members .team-member-card')).map(card => ({
+                name: card.querySelector('.team-name').value,
+                role: card.querySelector('.team-role').value,
+                description: card.querySelector('.team-description').value,
+                image: card.querySelector('.team-image').value
             }));
 
             contentData = {
@@ -1412,6 +1564,8 @@
                 },
                 stats: stats,
                 team: {
+                    title: document.getElementById('team-title').value,
+                    description: document.getElementById('team-description').value,
                     members: teamMembers
                 },
                 contact: {
@@ -1422,6 +1576,8 @@
                 }
             };
 
+            console.log('📤 Enviando datos al servidor:', contentData);
+
             try {
                 const response = await fetch('/api/content', {
                     method: 'POST',
@@ -1431,14 +1587,17 @@
                     body: JSON.stringify(contentData)
                 });
 
+                console.log('📡 Respuesta del servidor - Status:', response.status);
+
                 if (response.ok) {
                     showAlert('success', 'Cambios guardados exitosamente');
                 } else {
-                    showAlert('error', 'Error al guardar los cambios');
+                    console.error('Error guardando cambios - HTTP:', response.status, response.statusText);
+                    showAlert('error', 'Error al guardar los cambios en el servidor');
                 }
             } catch (error) {
-                console.error('Error:', error);
-                showAlert('error', 'Error al guardar los cambios');
+                console.error('Error guardando cambios - Exception:', error);
+                showAlert('error', 'Error de conexión al guardar los cambios');
             }
         }
 
@@ -1467,37 +1626,68 @@
 
         // Subir imagen al servidor
         function selectImage(element) {
+            console.log('🖼️ Iniciando selección de imagen...');
             const input = document.createElement('input');
             input.type = 'file';
             input.accept = 'image/*';
             input.onchange = async (e) => {
                 const file = e.target.files[0];
+                console.log('📁 Archivo seleccionado:', file ? file.name : 'ninguno');
+
                 if (file) {
                     try {
+                        console.log('📤 Preparando subida de imagen...');
                         // Crear FormData para enviar la imagen
                         const formData = new FormData();
                         formData.append('image', file);
-                        
+
+                        console.log('🌐 Enviando petición a /api/upload...');
                         // Subir imagen al servidor
                         const response = await fetch('/api/upload', {
                             method: 'POST',
                             body: formData
                         });
-                        
+
+                        console.log('📡 Respuesta recibida - Status:', response.status, response.statusText);
+
                         if (response.ok) {
+                            console.log('✅ Respuesta OK, parseando JSON...');
                             const result = await response.json();
+                            console.log('📊 Resultado del servidor:', result);
+
                             // Actualizar la vista previa con la URL del servidor
+                            console.log('🔄 Actualizando DOM con nueva imagen...');
+
+                            // Buscar el input ANTES de actualizar el innerHTML
+                            const inputElement = element.querySelector('input');
+                            console.log('🔍 Input encontrado:', inputElement);
+
+                            // Actualizar el contenido visual
                             element.innerHTML = `<img src="${result.url}" alt="">`;
-                            element.querySelector('input').value = result.url;
-                            
+
+                            // Crear un nuevo input oculto con la URL y la clase correcta
+                            const newInput = document.createElement('input');
+                            newInput.type = 'hidden';
+                            newInput.className = 'team-image';
+                            newInput.value = result.url;
+                            element.appendChild(newInput);
+
+                            console.log('✅ DOM actualizado correctamente');
+                            console.log('🔗 Nuevo input creado con clase y valor:', newInput.className, newInput.value);
+
+                            console.log('🔄 Llamando a updatePreview()...');
                             // Actualizar preview inmediatamente
                             updatePreview();
+                            console.log('✅ updatePreview() completado');
                         } else {
-                            console.error('Error subiendo imagen');
+                            console.error('❌ Error HTTP al subir imagen:', response.status, response.statusText);
+                            const errorText = await response.text();
+                            console.error('📄 Contenido del error:', errorText);
                             showAlert('error', 'Error al subir la imagen');
                         }
                     } catch (error) {
-                        console.error('Error:', error);
+                        console.error('💥 Excepción al subir imagen:', error);
+                        console.error('📍 Stack trace:', error.stack);
                         showAlert('error', 'Error al subir la imagen');
                     }
                 }
@@ -1529,6 +1719,7 @@
         }
 
         function updatePreview() {
+            console.log('🔄 INICIO updatePreview()');
             // Recopilar datos actuales del formulario
             const heroFeatures = Array.from(document.querySelectorAll('#hero-features input')).map(input => input.value).filter(v => v);
             
@@ -1542,11 +1733,19 @@
                 label: item.querySelectorAll('input')[1]?.value || ''
             }));
 
-            const teamMembers = Array.from(document.querySelectorAll('.team-member-card')).map(card => ({
-                name: card.querySelector('.member-name')?.value || '',
-                role: card.querySelector('.member-role')?.value || '',
-                image: card.querySelector('.member-image')?.value || ''
-            }));
+            // Recopilar datos del equipo
+            const teamMembers = Array.from(document.querySelectorAll('#team-members .team-member-card')).map((card, index) => {
+                const imageInput = card.querySelector('.team-image');
+                const imageValue = imageInput?.value || '';
+                console.log(`📊 Recopilando datos - Miembro ${index + 1}: imagen="${imageValue}"`);
+
+                return {
+                    name: card.querySelector('.team-name')?.value || '',
+                    role: card.querySelector('.team-role')?.value || '',
+                    description: card.querySelector('.team-description')?.value || '',
+                    image: imageValue
+                };
+            });
 
             previewData = {
                 hero: {
@@ -1564,6 +1763,8 @@
                 },
                 stats: stats,
                 team: {
+                    title: document.getElementById('team-title')?.value || '',
+                    description: document.getElementById('team-description')?.value || '',
                     members: teamMembers
                 },
                 contact: {
@@ -1574,17 +1775,22 @@
                 }
             };
 
+            console.log('📊 Datos recopilados para preview:', previewData);
+
             // Enviar draft al servidor para vista previa
+            console.log('📤 Enviando draft al servidor...');
             sendDraftToServer(previewData);
 
             // Enviar datos al iframe de preview
             const previewFrame = document.getElementById('previewModalFrame');
             if (previewFrame && previewFrame.contentWindow) {
+                console.log('📺 Enviando datos al iframe de preview...');
                 previewFrame.contentWindow.postMessage({
                     type: 'updatePreview',
                     data: previewData
                 }, '*');
             }
+            console.log('✅ FIN updatePreview()');
         }
 
         // Función para enviar draft al servidor
@@ -1597,12 +1803,16 @@
                     },
                     body: JSON.stringify(data)
                 });
-                
+
                 if (!response.ok) {
-                    console.error('Error response from server:', response.status);
+                    console.error('Error al actualizar preview:', response.status, response.statusText);
+                    // No mostrar alerta de error para drafts, solo loggear
+                } else {
+                    console.log('Preview actualizado correctamente');
                 }
             } catch (error) {
-                console.error('Error enviando draft:', error);
+                console.error('Error enviando draft para preview:', error);
+                // No mostrar alerta de error para drafts, solo loggear
             }
         }
 
@@ -1620,9 +1830,31 @@
             const modal = document.getElementById('previewModal');
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
-            
-            // Actualizar preview al abrir
-            setTimeout(updatePreview, 500);
+
+            // Primero actualizar el draft en el servidor
+            updatePreview();
+
+            // Luego cargar el iframe con modo preview
+            const modalFrame = document.getElementById('previewModalFrame');
+            if (modalFrame) {
+                const timestamp = Date.now();
+                modalFrame.src = `index.html?preview=true&t=${timestamp}`;
+
+                // Wait for iframe to load and then send data directly
+                modalFrame.onload = function() {
+                    setTimeout(() => {
+                        try {
+                            modalFrame.contentWindow.postMessage({
+                                type: 'updatePreview',
+                                data: previewData
+                            }, '*');
+                            console.log('📱 Datos enviados al iframe:', previewData.team);
+                        } catch (e) {
+                            console.error('Error enviando datos al iframe:', e);
+                        }
+                    }, 500);
+                };
+            }
         }
 
         function closePreviewModal() {
@@ -1634,8 +1866,11 @@
         function refreshModalPreview() {
             const modalFrame = document.getElementById('previewModalFrame');
             if (modalFrame) {
-                modalFrame.src = modalFrame.src;
-                setTimeout(updatePreview, 1000);
+                // Recargar el iframe con el contenido draft
+                modalFrame.src = 'index.html?preview=true&t=' + Date.now();
+                setTimeout(() => {
+                    updatePreview();
+                }, 500);
             }
         }
 
@@ -1740,26 +1975,57 @@
                 </div>
             `;
 
-            // Render Team Section with exact landing structure
-            const teamHtml = `
-                <div class="preview-section">
-                    <div class="section-label">EQUIPO</div>
-                    <div class="preview-team">
-                        <div class="preview-team-content">
-                            <h2>Nuestro Equipo</h2>
-                            <div class="preview-team-grid">
-                                ${previewData.team.members.map(member => `
-                                    <div class="preview-team-member">
-                                        ${member.image ? `<img src="${member.image}" alt="${member.name}" class="preview-team-avatar">` : `<div class="preview-team-avatar" style="background: #f0f0f0; display: flex; align-items: center; justify-content: center; color: #666;">Foto</div>`}
-                                        <div class="preview-team-name">${member.name}</div>
-                                        <div class="preview-team-role">${member.role}</div>
-                                    </div>
-                                `).join('')}
+            // Render Team Section (Dynamic)
+            let teamHtml = '';
+
+            if (previewData.team && previewData.team.members && previewData.team.members.length > 0) {
+                console.log('🎠 Renderizando equipo en preview:', previewData.team.members);
+
+                teamHtml = `
+                    <div class="preview-section">
+                        <div class="section-label">EQUIPO</div>
+                        <div class="preview-team">
+                            <div class="preview-team-content">
+                                <h2>${previewData.team.title || 'Nuestro equipo'}</h2>
+                                <p style="margin-bottom: 2rem; color: #666;">${previewData.team.description || ''}</p>
+                                <div class="preview-team-grid">
+                                    ${previewData.team.members.map(member => {
+                                        // Ensure full URL for images in preview
+                                        let imageUrl = member.image || '';
+                                        if (imageUrl && !imageUrl.startsWith('http') && !imageUrl.startsWith('data:')) {
+                                            imageUrl = window.location.origin + '/' + imageUrl.replace(/^\/+/, '');
+                                        }
+                                        console.log(`🖼️ Preview image for ${member.name}:`, imageUrl);
+
+                                        const fallbackSVG = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDEyMCAxMjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiBmaWxsPSIjRjNGNEY2Ii8+CjxjaXJjbGUgY3g9IjYwIiBjeT0iNTAiIHI9IjIwIiBmaWxsPSIjRDBENURBIi8+CjxwYXRoIGQ9Ik02MCA4MEM0Ny41IDgwIDM3IDcwLjUgMzcgNzlIMTAzQzEwMyA3MC41IDkyLjUgODAgNjAgODBaIiBmaWxsPSIjRDBENURBIi8+Cjwvc3ZnPgo=';
+
+                                        return `
+                                            <div class="preview-team-member">
+                                                <img src="${imageUrl || fallbackSVG}" alt="${member.name}" class="preview-team-avatar" onerror="console.error('Preview image failed for ${member.name}:', this.src); this.src='${fallbackSVG}';" onload="console.log('Preview image loaded for ${member.name}')">
+                                                <div class="preview-team-name">${member.name}</div>
+                                                <div class="preview-team-role">${member.role}</div>
+                                                ${member.description ? `<p style="font-size: 0.9rem; margin-top: 0.5rem; color: #666; font-style: italic;">${member.description}</p>` : ''}
+                                            </div>
+                                        `;
+                                    }).join('')}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            `;
+                `;
+            } else {
+                teamHtml = `
+                    <div class="preview-section">
+                        <div class="section-label">EQUIPO</div>
+                        <div class="preview-team">
+                            <div class="preview-team-content">
+                                <h2>Agregar miembros del equipo</h2>
+                                <p style="color: #666; font-style: italic;">Ve a la sección "Equipo" para agregar miembros</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
 
             previewContainer.innerHTML = heroHtml + aboutHtml + statsHtml + teamHtml;
         }
@@ -1814,25 +2080,12 @@
             }
         }
 
-        // Agregar botón para agregar miembros del equipo
-        function addTeamButton() {
-            const teamContainer = document.getElementById('team-members');
-            if (!document.getElementById('add-member-btn')) {
-                const addButton = document.createElement('button');
-                addButton.id = 'add-member-btn';
-                addButton.className = 'btn-add';
-                addButton.innerHTML = '<i class="fas fa-plus"></i> Agregar Miembro';
-                addButton.onclick = () => addTeamMember();
-                teamContainer.parentNode.appendChild(addButton);
-            }
-        }
 
         // Modificar la función de carga para inicializar preview
         async function loadContentWithPreview() {
             await loadContent();
             addDefaultStats();
             addStatsButton();
-            addTeamButton();
             addPreviewListeners();
             updatePreview();
         }

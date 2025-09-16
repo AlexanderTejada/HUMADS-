@@ -181,24 +181,74 @@ function updatePageContent(data) {
             }
         });
     }
-    
-    // Team members
-    if (data.team && data.team.members) {
-        const teamSlides = document.querySelectorAll('.team-slide');
-        data.team.members.forEach((member, index) => {
-            if (teamSlides[index]) {
-                const slide = teamSlides[index];
-                const img = slide.querySelector('.member-photo');
-                const name = slide.querySelector('.member-info h4');
-                const role = slide.querySelector('.member-info span');
-                
-                if (img && member.image) img.src = member.image;
-                if (name && member.name) name.textContent = member.name;
-                if (role && member.role) role.textContent = member.role;
-            }
-        });
+
+    // Update Team Section - Dynamic
+    if (data.team) {
+
+        // Update team header
+        const teamTitle = document.getElementById('teamTitle');
+        if (teamTitle && data.team.title) {
+            teamTitle.textContent = data.team.title;
+        }
+
+        const teamDescription = document.getElementById('teamDescription');
+        if (teamDescription && data.team.description) {
+            teamDescription.textContent = data.team.description;
+        }
+
+        // Update team carousel with dynamic members
+        const carouselTrack = document.getElementById('teamCarouselTrack');
+        if (carouselTrack && data.team.members) {
+
+            const slides = data.team.members.map((member, index) => {
+                let imageUrl = member.image && member.image.trim() !== '' ? member.image : '';
+
+                // Resolve relative URLs to absolute URLs for iframe context
+                if (imageUrl && !imageUrl.startsWith('http') && !imageUrl.startsWith('data:')) {
+                    const isInIframe = window.parent !== window;
+                    if (isInIframe) {
+                        // In iframe, use parent's origin and full path
+                        const parentOrigin = window.parent.location.origin;
+                        const parentPath = window.parent.location.pathname.replace('/admin.html', '');
+                        imageUrl = parentOrigin + parentPath + '/' + imageUrl.replace(/^\/+/, '');
+                    } else {
+                        // Not in iframe, resolve normally
+                        imageUrl = window.location.origin + '/' + imageUrl.replace(/^\/+/, '');
+                    }
+                }
+
+                // Fallback SVG if no image
+                const fallbackSVG = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUwIiBoZWlnaHQ9IjI1MCIgdmlld0JveD0iMCAwIDI1MCAyNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyNTAiIGhlaWdodD0iMjUwIiBmaWxsPSIjRjNGNEY2Ii8+CjxjaXJjbGUgY3g9IjEyNSIgY3k9IjEwMCIgcj0iNDAiIGZpbGw9IiNEMEQ1REEiLz4KPHBhdGggZD0iTTEyNSAxNjBDOTUuMTQ3IDE2MCA3MS4zMjUgMTc2LjkxNSA2Mi4yNSAyMDBIMTg3Ljc1QzE3OC42NzUgMTc2LjkxNSAxNTQuODUzIDE2MCAxMjUgMTYwWiIgZmlsbD0iI0QwRDVEQSIvPgo8L3N2Zz4K';
+
+                if (!imageUrl) {
+                    imageUrl = fallbackSVG;
+                }
+
+                return `
+                    <div class="team-slide">
+                        <div class="team-member">
+                            <div class="member-photo-container">
+                                <img src="${imageUrl}" alt="${member.name}" class="member-photo" loading="lazy">
+                            </div>
+                            <div class="member-info">
+                                <h4>${member.name}</h4>
+                                <span>${member.role}</span>
+                                ${member.description ? `<p class="member-description">${member.description}</p>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            carouselTrack.innerHTML = slides.join('');
+
+            // Reinitialize carousel after updating content
+            setTimeout(() => {
+                initializeTeamCarousel();
+            }, 100);
+        }
     }
-    
+
     // Contact info
     if (data.contact) {
         const emailLinks = document.querySelectorAll('a[href^="mailto:"]');
@@ -272,88 +322,124 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Team Carousel Functionality
-document.addEventListener('DOMContentLoaded', () => {
+// Dynamic Team Carousel Functionality
+let teamCurrentPage = 0;
+let teamSlidesPerPage = 3;
+let teamTotalPages = 0;
+
+function initializeTeamCarousel() {
     const track = document.querySelector('.carousel-track');
-    if (!track) return;
+    if (!track) {
+        console.log('❌ Carousel track no encontrado');
+        return;
+    }
 
     const slides = Array.from(track.children);
     const nextButton = document.getElementById('nextBtn');
     const prevButton = document.getElementById('prevBtn');
     const dotsNav = document.querySelector('.carousel-dots');
 
+    if (!nextButton || !prevButton || !dotsNav) {
+        return;
+    }
+
+    // Clear existing dots
+    dotsNav.innerHTML = '';
+
     // Responsive slides per page
     const isMobile = window.innerWidth <= 768;
-    const slidesPerPage = isMobile ? 1 : 3;
+    teamSlidesPerPage = isMobile ? 1 : 3;
     const slideCount = slides.length;
-    const totalPages = Math.ceil(slideCount / slidesPerPage);
-    let currentPage = 0;
+    teamTotalPages = Math.ceil(slideCount / teamSlidesPerPage);
+    teamCurrentPage = 0;
 
     // Create dots
-    for (let i = 0; i < totalPages; i++) {
+    for (let i = 0; i < teamTotalPages; i++) {
         const dot = document.createElement('button');
         dot.classList.add('dot');
         if (i === 0) dot.classList.add('active');
         dot.addEventListener('click', () => {
-            currentPage = i;
-            updateCarousel();
+            teamCurrentPage = i;
+            updateTeamCarouselPosition();
         });
         dotsNav.appendChild(dot);
     }
 
     const dots = Array.from(dotsNav.children);
 
-    // Make updateCarousel global so it can be called from updatePageContent
-    updateCarousel = () => {
+    // Update carousel position
+    function updateTeamCarouselPosition() {
         const isMobile = window.innerWidth <= 768;
         let newTransform;
-        
+
         if (isMobile) {
-            // In mobile, move by 85% (slide width + gap)
-            newTransform = -currentPage * 85;
+            // In mobile, move by 100% per slide
+            newTransform = -teamCurrentPage * 100;
         } else {
-            // In desktop, move by 100% divided by slides per page
-            newTransform = -currentPage * (100 / slidesPerPage);
+            // In desktop, move by percentage based on slides per page
+            newTransform = -teamCurrentPage * (100 / teamSlidesPerPage);
         }
-        
+
         track.style.transform = `translateX(${newTransform}%)`;
 
         dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === currentPage);
+            dot.classList.toggle('active', index === teamCurrentPage);
         });
 
         // Disable/Enable buttons
-        prevButton.disabled = currentPage === 0;
-        nextButton.disabled = currentPage === totalPages - 1;
-    };
+        prevButton.disabled = teamCurrentPage === 0;
+        nextButton.disabled = teamCurrentPage === teamTotalPages - 1;
 
-    nextButton.addEventListener('click', () => {
-        if (currentPage < totalPages - 1) {
-            currentPage++;
-            updateCarousel();
+        // Update button opacity
+        prevButton.style.opacity = teamCurrentPage === 0 ? '0.5' : '1';
+        nextButton.style.opacity = teamCurrentPage === teamTotalPages - 1 ? '0.5' : '1';
+    }
+
+    // Update carousel position
+    updateTeamCarouselPosition();
+
+    // Store update function globally
+    window.updateTeamCarousel = updateTeamCarouselPosition;
+}
+
+// Navigation functions
+function nextSlide() {
+    if (teamCurrentPage < teamTotalPages - 1) {
+        teamCurrentPage++;
+        if (window.updateTeamCarousel) {
+            window.updateTeamCarousel();
         }
-    });
+    }
+}
 
-    prevButton.addEventListener('click', () => {
-        if (currentPage > 0) {
-            currentPage--;
-            updateCarousel();
+function previousSlide() {
+    if (teamCurrentPage > 0) {
+        teamCurrentPage--;
+        if (window.updateTeamCarousel) {
+            window.updateTeamCarousel();
         }
-    });
+    }
+}
 
-    // Auto-play
-    setInterval(() => {
-        let nextPage = (currentPage + 1) % totalPages;
-        currentPage = nextPage;
-        updateCarousel();
-    }, 5000);
+// Initialize carousel when DOM is ready and on resize
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize team carousel if it exists
+    const teamCarousel = document.getElementById('teamCarouselTrack');
+    if (teamCarousel) {
+        initializeTeamCarousel();
+    }
+});
 
-    // Handle window resize
-    window.addEventListener('resize', () => {
-        updateCarousel();
-    });
-
-    updateCarousel();
+// Handle window resize for team carousel
+let teamResizeTimeout;
+window.addEventListener('resize', () => {
+    clearTimeout(teamResizeTimeout);
+    teamResizeTimeout = setTimeout(() => {
+        const teamCarousel = document.getElementById('teamCarouselTrack');
+        if (teamCarousel) {
+            initializeTeamCarousel();
+        }
+    }, 250);
 });
 
 // Modal Functions
@@ -389,9 +475,33 @@ document.addEventListener('click', (e) => {
 // CMS Content Loading
 async function loadContentFromCMS() {
     try {
-        const response = await fetch('/api/content');
+
+        // Check if we're in preview mode
+        const urlParams = new URLSearchParams(window.location.search);
+        const isPreview = urlParams.get('preview') === 'true';
+
+        // Use draft endpoint if in preview mode
+        const endpoint = isPreview ? '/api/content/draft' : '/api/content';
+
+        const response = await fetch(endpoint);
+
         const content = await response.json();
+
         updatePageContent(content);
+
+        // If in preview, listen for updates from admin panel
+        if (isPreview) {
+            // Poll for updates every 2 seconds
+            setInterval(async () => {
+                try {
+                    const draftResponse = await fetch('/api/content/draft');
+                    const draftContent = await draftResponse.json();
+                    updatePageContent(draftContent);
+                } catch (error) {
+                    console.error('Error updating preview:', error);
+                }
+            }, 2000);
+        }
     } catch (error) {
         console.error('Error loading content:', error);
     }
@@ -474,26 +584,61 @@ function updatePageContent(content) {
         });
     }
 
-    // Update Team Section
-    if (content.team && content.team.members) {
-        const carouselTrack = document.querySelector('.carousel-track');
-        if (carouselTrack) {
-            carouselTrack.innerHTML = content.team.members.map(member => `
-                <div class="team-slide">
-                    <div class="team-member">
-                        <div class="member-photo-container">
-                            <img src="${member.image || 'assets/img/chicas/1.jpg'}" alt="${member.name}" class="member-photo">
-                        </div>
-                        <div class="member-info">
-                            <h4>${member.name}</h4>
-                            <span>${member.role}</span>
+    // Update Team Section - Dynamic
+    if (content.team) {
+
+        // Update team header
+        const teamTitle = document.getElementById('teamTitle');
+        if (teamTitle && content.team.title) {
+            teamTitle.textContent = content.team.title;
+        }
+
+        const teamDescription = document.getElementById('teamDescription');
+        if (teamDescription && content.team.description) {
+            teamDescription.textContent = content.team.description;
+        }
+
+        // Update team carousel with dynamic members
+        const carouselTrack = document.getElementById('teamCarouselTrack');
+        if (carouselTrack && content.team.members && content.team.members.length > 0) {
+
+            const slides = content.team.members.map((member, index) => {
+                let imageUrl = member.image && member.image.trim() !== '' ? member.image : '';
+
+                // Resolve relative URLs to absolute URLs for iframe context
+                if (imageUrl && !imageUrl.startsWith('http') && !imageUrl.startsWith('data:')) {
+                    if (window.parent !== window) {
+                        imageUrl = window.parent.location.origin + '/' + imageUrl.replace(/^\/+/, '');
+                    } else {
+                        imageUrl = window.location.origin + '/' + imageUrl.replace(/^\/+/, '');
+                    }
+                }
+
+                const fallbackSVG = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUwIiBoZWlnaHQ9IjI1MCIgdmlld0JveD0iMCAwIDI1MCAyNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyNTAiIGhlaWdodD0iMjUwIiBmaWxsPSIjRjNGNEY2Ci8+CjxjaXJjbGUgY3g9IjEyNSIgY3k9IjEwMCIgcj0iNDAiIGZpbGw9IiNEMEQ1REEiLz4KUGhdaCBkPSJNMTI1IDE2MEM5NS4xNDcgMTYwIDcxLjMyNSAxNzYuOTE1IDYyLjI1IDIwMEgxODcuNzVDMTc4LjY3NSAxNzYuOTE1IDE1NC44NTMgMTYwIDEyNSAxNjBaIiBmaWxsPSIjRDBENURBIi8+Cjwvc3ZnPgo=';
+                imageUrl = imageUrl || fallbackSVG;
+
+                return `
+                    <div class="team-slide">
+                        <div class="team-member">
+                            <div class="member-photo-container">
+                                <img src="${imageUrl}" alt="${member.name}" class="member-photo" loading="lazy">
+                            </div>
+                            <div class="member-info">
+                                <h4>${member.name}</h4>
+                                <span>${member.role}</span>
+                                ${member.description ? `<p class="member-description">${member.description}</p>` : ''}
+                            </div>
                         </div>
                     </div>
-                </div>
-            `).join('');
-            
-            // Reinicializar el carousel después de actualizar
-            setTimeout(() => updateCarousel(), 100); // Small delay to ensure DOM is updated
+                `;
+            });
+
+            carouselTrack.innerHTML = slides.join('');
+
+            // Reinitialize carousel after updating content
+            setTimeout(() => {
+                initializeTeamCarousel();
+            }, 100);
         }
     }
 
@@ -524,21 +669,33 @@ function scrollToSection(sectionId) {
     }
 }
 
-// Global carousel variables
-let currentPage = 0;
+// Carousel variables removed
 
-// Global carousel update function - will be defined when DOM is ready
-function updateCarousel() {
-    // This will be replaced by the proper implementation when carousel is initialized
-    console.log('Carousel not yet initialized');
-}
+// Listen for preview updates from admin panel
+window.addEventListener('message', function(event) {
+    if (event.data && event.data.type === 'updatePreview') {
+        console.log('📱 Recibido mensaje de preview:', event.data.data);
+        // Log specific team data for debugging
+        if (event.data.data.team && event.data.data.team.members) {
+            console.log('👥 Miembros del equipo recibidos:', event.data.data.team.members.length);
+            event.data.data.team.members.forEach((member, index) => {
+                console.log(`  ${index + 1}. ${member.name}: ${member.image || 'SIN IMAGEN'}`);
+            });
+        }
+        updatePageContent(event.data.data);
+    }
+});
 
 // Load content when page loads
 document.addEventListener('DOMContentLoaded', () => {
+    // Generate initial content with default values
+    updatePageContent({});
+
+    // Then load from CMS
     loadContentFromCMS();
-    
-    // Reload content every 3 seconds to reflect CMS changes
-    setInterval(loadContentFromCMS, 3000);
+
+    // Reload content every 10 seconds to reflect CMS changes (reduced frequency)
+    setInterval(loadContentFromCMS, 10000);
 });
 
 // Close modal with Escape key
