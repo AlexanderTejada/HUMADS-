@@ -4,7 +4,11 @@
   "framework": null,
   "rewrites": [
     {
-      "source": "/(.*)",
+      "source": "/admin",
+      "destination": "/admin.html"
+    },
+    {
+      "source": "/",
       "destination": "/index.html"
     }
   ]
