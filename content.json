@@ -54,20 +54,8 @@
       {
         "name": "Valentina",
         "role": "CEO & Estrategia",
-        "description": "Lidera la visión estratégica y el crecimiento de la empresa",
+        "description": "Lidera la visión estratégica y el crecimiento del negocio",
         "image": "assets/img/carrusel/1.jpg"
-      },
-      {
-        "name": "",
-        "role": "ej",
-        "description": "",
-        "image": ""
-      },
-      {
-        "name": "ej2",
-        "role": "",
-        "description": "",
-        "image": ""
       }
     ]
   },
