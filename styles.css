@@ -3850,3 +3850,438 @@ body {
     }
 }
 
+/* ==================== NUEVAS SECCIONES DEL PORTFOLIO ==================== */
+
+/* Historia Section */
+.historia-section {
+    padding: 80px 20px;
+    background: var(--blanco-puro);
+    text-align: center;
+}
+
+.historia-section .container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.historia-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+    margin-top: 20px;
+}
+
+/* Planes Section */
+.planes-section {
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #f8f9ff 0%, #fff 100%);
+    text-align: center;
+}
+
+.planes-section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.planes-subtitle {
+    color: #666;
+    font-size: 1.1rem;
+    margin: 15px 0 40px;
+}
+
+.planes-cta {
+    margin-top: 50px;
+}
+
+.planes-cta .btn-primary {
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    background: var(--gradient-button);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.planes-cta .btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(106, 0, 244, 0.3);
+}
+
+.planes-cta .btn-primary i {
+    margin-right: 10px;
+}
+
+.planes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin: 40px 0;
+}
+
+.plan-card {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 5px 20px rgba(106, 0, 244, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.plan-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(106, 0, 244, 0.2);
+}
+
+.plan-card.featured {
+    border: 2px solid var(--morado-intenso);
+}
+
+.plan-card.highlight {
+    border: 2px solid var(--azul-electrico);
+}
+
+.plan-badge {
+    position: absolute;
+    top: -15px;
+    right: 20px;
+    background: var(--gradient-button);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.plan-card h3 {
+    color: var(--morado-intenso);
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.plan-card h3 i {
+    margin-right: 10px;
+    color: var(--azul-electrico);
+}
+
+.plan-price {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--morado-intenso);
+    margin: 15px 0;
+}
+
+.plan-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.plan-card ul li {
+    padding: 10px 0;
+    color: #555;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.plan-card ul li:last-child {
+    border-bottom: none;
+}
+
+/* Asistente de Contenido */
+.asistente-box {
+    background: linear-gradient(135deg, var(--morado-intenso), var(--azul-electrico));
+    border-radius: 20px;
+    padding: 40px;
+    margin-top: 50px;
+    color: white;
+}
+
+.asistente-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.asistente-header h3 {
+    color: white;
+    font-size: 1.8rem;
+    margin: 15px 0;
+}
+
+.asistente-header .plan-price {
+    color: white;
+}
+
+.asistente-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.asistente-col h4 {
+    color: white;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+.asistente-col ul {
+    list-style: none;
+    padding: 0;
+}
+
+.asistente-col ul li {
+    padding: 10px 0;
+    padding-left: 25px;
+    position: relative;
+}
+
+.asistente-col ul li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--azul-electrico);
+    font-weight: bold;
+}
+
+/* Proceso Section */
+.proceso-section {
+    padding: 80px 20px;
+    background: var(--blanco-puro);
+}
+
+.proceso-section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.proceso-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin: 40px 0;
+}
+
+.proceso-step {
+    background: linear-gradient(135deg, #f8f9ff 0%, #fff 100%);
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    position: relative;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.proceso-step:hover {
+    border-color: var(--azul-electrico);
+    transform: translateY(-5px);
+}
+
+.step-number {
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
+    min-height: 60px;
+    background: var(--gradient-button);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 auto 20px;
+    flex-shrink: 0;
+}
+
+.proceso-step h3 {
+    color: var(--morado-intenso);
+    margin: 15px 0;
+    font-size: 1.2rem;
+}
+
+.proceso-step h3 i {
+    margin-right: 10px;
+    color: var(--azul-electrico);
+}
+
+.proceso-step p {
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Lo que incluye el servicio */
+.servicio-incluye {
+    margin-top: 60px;
+    padding: 40px;
+    background: linear-gradient(135deg, #f8f9ff 0%, #fff 100%);
+    border-radius: 20px;
+}
+
+.servicio-incluye h3 {
+    text-align: center;
+    color: var(--morado-intenso);
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+}
+
+.incluye-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+}
+
+.incluye-item {
+    text-align: center;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.incluye-item:hover {
+    transform: translateY(-3px);
+}
+
+.incluye-item i {
+    font-size: 2.5rem;
+    color: var(--azul-electrico);
+    margin-bottom: 10px;
+    display: block;
+}
+
+.incluye-item p {
+    color: #555;
+    font-weight: 500;
+}
+
+/* Resultados Section */
+.resultados-section {
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #f8f9ff 0%, #fff 100%);
+    text-align: center;
+}
+
+.resultados-section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.resultados-section .subtitle {
+    color: #666;
+    font-size: 1.1rem;
+    margin: 15px 0 40px;
+}
+
+.resultados-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin: 40px 0;
+}
+
+.resultado-item {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 5px 20px rgba(106, 0, 244, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.resultado-item:hover {
+    transform: translateY(-5px);
+}
+
+.resultado-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--gradient-button);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+}
+
+.resultado-icon i {
+    font-size: 1.8rem;
+    color: white;
+}
+
+.resultado-item h3 {
+    color: var(--morado-intenso);
+    margin: 15px 0;
+    font-size: 1.3rem;
+}
+
+.resultado-image {
+    margin: 20px 0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.resultado-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.resultado-note {
+    margin-top: 15px;
+    padding: 10px;
+    background: #f8f9ff;
+    border-radius: 8px;
+    color: var(--morado-intenso);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.resultados-cta {
+    margin-top: 50px;
+}
+
+.resultados-cta .btn-primary {
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    background: var(--gradient-button);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.resultados-cta .btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(106, 0, 244, 0.3);
+}
+
+.resultados-cta .btn-primary i {
+    margin-right: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .planes-grid,
+    .asistente-grid,
+    .proceso-steps,
+    .incluye-grid,
+    .resultados-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .historia-text {
+        font-size: 1rem;
+    }
+
+    .plan-price {
+        font-size: 1.5rem;
+    }
+
+    .asistente-box {
+        padding: 30px 20px;
+    }
+}
+

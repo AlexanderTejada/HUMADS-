@@ -48,20 +48,56 @@
     }
   ],
   "team": {
-    "title": "Nuestro equipo de expertas",
-    "description": "Conoce a las profesionales que trabajarán en hacer crecer tu negocio",
+    "title": "7 mujeres profesionales con experiencia",
+    "description": "En Humads Agencia somos un equipo de 7 mujeres profesionales con sólida experiencia en publicidad y marketing digital. Nos especializamos en diseñar estrategias publicitarias personalizadas que se adaptan a las necesidades de cada cliente.",
     "members": [
       {
-        "name": "Valentina",
-        "role": "CEO & Estrategia",
-        "description": "Lidera la visión estratégica y el crecimiento del negocio",
-        "image": "assets/img/carrusel/1.jpg"
+        "name": "Luciana Carubin",
+        "role": "Fundadora y Líder comercial",
+        "description": "",
+        "image": "assets/img/carrusel/luciana.jpg"
+      },
+      {
+        "name": "Victoria Pucci",
+        "role": "Líder de marketing y analista comercial",
+        "description": "",
+        "image": "assets/img/carrusel/victoria.jpg"
+      },
+      {
+        "name": "Valentina Pavón",
+        "role": "Líder de finanzas",
+        "description": "",
+        "image": "assets/img/carrusel/valentina.jpg"
+      },
+      {
+        "name": "Guadalupe Mir Marffini",
+        "role": "Líder de operaciones",
+        "description": "",
+        "image": "assets/img/carrusel/guadalupe.jpg"
+      },
+      {
+        "name": "Agustina Almada",
+        "role": "Trafficker Digital",
+        "description": "",
+        "image": "assets/img/carrusel/agustina.jpg"
+      },
+      {
+        "name": "Dalma Alvarez",
+        "role": "Trafficker Digital",
+        "description": "",
+        "image": "assets/img/carrusel/dalma.jpg"
+      },
+      {
+        "name": "Natalia Rojas",
+        "role": "Trafficker Digital",
+        "description": "",
+        "image": "assets/img/carrusel/natalia.jpg"
       }
     ]
   },
   "contact": {
     "email": "info@humads.com",
-    "whatsapp": "1234567890",
+    "whatsapp": "5492645040136",
     "linkedin": "https://linkedin.com/company/humads",
     "instagram": "https://instagram.com/humads"
   }
