@@ -24,13 +24,13 @@ const siteConfig = {
             revenue: 'assets/img/strategy/resultados-exitosos.jpg'
         },
         team: [
-            { src: 'assets/img/carrusel/1.jpg', name: 'Valentina', role: 'CEO & Estrategia' },
-            { src: 'assets/img/carrusel/2.jpg', name: 'Luciana', role: 'Co-fundadora' },
-            { src: 'assets/img/carrusel/3.jpg', name: 'Marketing', role: 'Especialista' },
-            { src: 'assets/img/carrusel/4.jpg', name: 'Traffic', role: 'Manager' },
-            { src: 'assets/img/carrusel/5.jpg', name: 'Operaciones', role: 'Coordinadora' },
-            { src: 'assets/img/carrusel/6.jpg', name: 'Comercial', role: 'Ejecutiva' },
-            { src: 'assets/img/carrusel/7.jpg', name: 'Finanzas', role: 'Analista' }
+            { src: 'assets/img/carrusel/valentina.jpg', name: 'Valentina Pavón', role: 'Fundadora y Líder Comercial' },
+            { src: 'assets/img/carrusel/luciana.jpg', name: 'Luciana Carubin', role: 'Líder de Marketing y Analista Comercial' },
+            { src: 'assets/img/carrusel/victoria.jpg', name: 'Victoria Pucci', role: 'Líder de Finanzas' },
+            { src: 'assets/img/carrusel/guadalupe.jpg', name: 'Guadalupe Mir Marffini', role: 'Líder de Operaciones' },
+            { src: 'assets/img/carrusel/agustina.jpg', name: 'Agustina Almada', role: 'Trafficker Digital' },
+            { src: 'assets/img/carrusel/dalma.jpg', name: 'Dalma Alvarez', role: 'Trafficker Digital' },
+            { src: 'assets/img/carrusel/natalia.jpg', name: 'Natalia Rojas', role: 'Trafficker Digital' }
         ],
         services: [
             { src: 'assets/img/servicios/analisis-cliente.jpg', title: 'Análisis de cliente ideal', category: 'research' },
