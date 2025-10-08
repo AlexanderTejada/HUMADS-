@@ -1331,9 +1331,7 @@
                 'assets/img/carrusel/4.jpg',
                 'assets/img/carrusel/5.jpg',
                 'assets/img/carrusel/6.jpg',
-                'assets/img/carrusel/7.jpg',
-                'assets/img/carrusel/8.jpg',
-                'assets/img/carrusel/9.jpg'
+                'assets/img/carrusel/7.jpg'
             ];
 
             // Migrar datos de team.members a carousel.images si existe
@@ -1346,7 +1344,7 @@
                 console.log('Migrating from team.members to carousel.images');
             }
 
-            for (let i = 0; i < 9; i++) {
+            for (let i = 0; i < 7; i++) {
                 const imgElement = document.getElementById(`carousel-${i + 1}`);
                 if (imgElement) {
                     // Usar imagen configurada, migrada, o por defecto
@@ -2062,7 +2060,7 @@
                 // Agregar estadísticas por defecto
                 addStat({ value: '140+', label: 'Clientes atendidos' });
                 addStat({ value: '4.5/5', label: 'Satisfacción promedio' });
-                addStat({ value: '9', label: 'Expertas en el equipo' });
+                addStat({ value: '7', label: 'Expertas en el equipo' });
                 addStat({ value: '100%', label: 'Enfoque en conversión' });
             }
         }

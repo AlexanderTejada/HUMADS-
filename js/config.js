@@ -30,9 +30,7 @@ const siteConfig = {
             { src: 'assets/img/carrusel/4.jpg', name: 'Traffic', role: 'Manager' },
             { src: 'assets/img/carrusel/5.jpg', name: 'Operaciones', role: 'Coordinadora' },
             { src: 'assets/img/carrusel/6.jpg', name: 'Comercial', role: 'Ejecutiva' },
-            { src: 'assets/img/carrusel/7.jpg', name: 'Finanzas', role: 'Analista' },
-            { src: 'assets/img/carrusel/8.jpg', name: 'RRHH', role: 'Gestora' },
-            { src: 'assets/img/carrusel/9.jpg', name: 'Creatividad', role: 'Diseñadora' }
+            { src: 'assets/img/carrusel/7.jpg', name: 'Finanzas', role: 'Analista' }
         ],
         services: [
             { src: 'assets/img/servicios/analisis-cliente.jpg', title: 'Análisis de cliente ideal', category: 'research' },
